@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="regVM"
+            type="com.master_vision.trfihi.registration.register.RegistrationViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@drawable/cust_toolbar_bg"
+                android:elevation="5dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@android:color/transparent"
+                    android:onClick="onBackClick"
+                    android:src="@drawable/back" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/registration"
+                    android:textColor="#fff"
+                    android:textSize="25sp" />
+            </LinearLayout>
+
+            <!--name-->
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                bind:font_textInputLayout="@{``}"
+                android:background="@drawable/cust_reg_bg"
+                android:paddingBottom="10dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="7dp"
+                >
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/name"
+                    android:inputType="text"
+                    android:text="@={regVM.name}"
+                    android:textSize="16sp"
+                    bind:font="@{``}" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <!--Email-->
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/cust_reg_bg"
+                android:paddingBottom="10dp"
+                bind:font_textInputLayout="@{``}"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="7dp"
+                >
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
+                    android:text="@={regVM.email}"
+                    android:textSize="16sp"
+                    bind:font="@{``}" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <!--Mobile-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:background="@drawable/cust_reg_bg"
+                    android:gravity="center">
+
+                    <Spinner
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        bind:spinner_adapter="@{regVM.spinnerAdapter}"
+                        android:onItemSelected="@{(parent,view,pos,id)->regVM.onSelectItem(parent,view,pos,id)}"
+                        bind:set_spinner_selection="@{regVM.spinnerSelectionPosition}"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/cust_reg_bg"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="15dp"
+                    bind:font_textInputLayout="@{``}"
+                    android:paddingRight="15dp"
+                    android:paddingTop="7dp"
+                    >
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/mobile"
+                        android:inputType="phone"
+                        android:text="@={regVM.mobile}"
+                        android:textSize="16sp"
+                        bind:font="@{``}" />
+
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+
+            <!--password-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/cust_reg_bg"
+                android:orientation="horizontal">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="15dp"
+                    bind:font_textInputLayout="@{``}"
+                    android:paddingRight="15dp"
+                    android:paddingTop="7dp"
+                    >
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/password"
+                        android:inputType="textPassword"
+                        android:text="@={regVM.password}"
+                        android:textSize="16sp"
+                        bind:font="@{``}"
+                        bind:hide_password="@{regVM.hidePassword}" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <ImageButton
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:onClick="@{regVM::onHidePassClick}"
+                    android:tint="@android:color/darker_gray"
+                    bind:src_compat_image="@{regVM.hidePassImg}" />
+            </LinearLayout>
+
+            <!--confirm password-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/cust_reg_bg"
+                android:orientation="horizontal">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:paddingTop="7dp"
+                    bind:font_textInputLayout="@{``}">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/confirm_password"
+                        android:inputType="textPassword"
+                        android:text="@={regVM.confirmPassword}"
+                        android:textSize="16sp"
+                        bind:font="@{``}"
+                        bind:hide_password="@{regVM.hideConfirmPassword}" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <ImageButton
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:onClick="@{regVM::onHideConfirmPassClick}"
+                    android:tint="@android:color/darker_gray"
+                    bind:src_compat_image="@{regVM.hideConfirmPassImg}" />
+            </LinearLayout>
+
+
+            <Button
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/cust_toolbar_bg"
+                android:gravity="center"
+                android:onClick="@{regVM::onRegisterClick}"
+                android:text="@string/register"
+                android:textAllCaps="false"
+                android:textColor="#fff"
+                android:textSize="21sp"
+                bind:font="@{``}" />
+
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/or_bg"
+                android:gravity="center"
+                android:text="@string/or"
+                android:textColor="#333"
+                android:textSize="21sp"
+                bind:font="@{``}" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="80dp"
+                    android:layout_height="1.5dp"
+                    android:background="#c094ff" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center"
+                    android:text="@string/register_with"
+                    android:textColor="#333"
+                    android:textSize="17sp"
+                    bind:font="@{``}" />
+
+                <View
+                    android:layout_width="80dp"
+                    android:layout_height="1.5dp"
+                    android:background="#c094ff" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:elevation="5dp"
+                    android:onClick="@{regVM::onFacebookClick}"
+                    android:src="@drawable/face" />
+
+                <View
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:elevation="5dp"
+                    android:onClick="@{regVM::onGoogleClick}"
+                    android:src="@drawable/google" />
+
+                <View
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:elevation="5dp"
+                    android:onClick="@{regVM::onTwitterClick}"
+                    android:src="@drawable/twitter" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:text="@string/terms_title"
+                android:textColor="#333"
+                android:textSize="14sp"
+                bind:font="@{``}" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:onClick="@{regVM::onTermsClick}"
+                android:text="@string/terms_and_conditions"
+                android:textAllCaps="false"
+                android:textColor="#846ffd"
+                android:textSize="17sp"
+                bind:font="@{``}" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</layout>
+

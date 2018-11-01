@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="eventAdapterVM"
+            type="com.master_vision.trfihi.home.events.view_model.EventAdapterViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{eventAdapterVM::onEventClick}">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/itemRole"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_margin="5dp"
+                android:background="#c094ff"
+                android:orientation="horizontal"
+                android:padding="1dp"
+                app:cardBackgroundColor="#c094ff"
+                app:cardCornerRadius="35dp"
+                app:cardElevation="5dp">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:padding="1dp"
+                    android:src="@drawable/empty"
+                    bind:circle_image_url="@{eventAdapterVM.profileImageUrl}" />
+
+            </android.support.v7.widget.CardView>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:lines="3"
+                    android:maxLines="3"
+                    android:text="@{eventAdapterVM.eventData}"
+                    android:textColor="#333333"
+                    android:textSize="13sp"
+                    bind:font="@{``}" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_gravity="center"
+                    android:gravity="end"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:layout_width="65dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/cust_event_bg"
+                        android:gravity="center"
+                        android:onClick="@{eventAdapterVM::onJoinEventClick}"
+                        android:text="@string/join"
+                        android:textAllCaps="false"
+                        android:textColor="#27b5eb"
+                        android:textSize="15sp"
+                        bind:font="@{``}" />
+
+                    <View
+                        android:layout_width="20dp"
+                        android:layout_height="match_parent" />
+
+                    <Button
+                        android:layout_width="65dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/cust_event_bg"
+                        android:gravity="center"
+                        android:onClick="@{eventAdapterVM::onDeleteEventClick}"
+                        android:text="@string/delete"
+                        android:textAllCaps="false"
+                        android:textColor="#27b5eb"
+                        android:textSize="15sp"
+                        bind:font="@{``}" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.6dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_alignParentBottom="true"
+            android:background="#333"/>
+    </RelativeLayout>
+
+</layout>
+

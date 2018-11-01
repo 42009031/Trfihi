@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Trfihi</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    // profile
+    <string name="profile">Profile</string>
+    <string name="gender">Gender :</string>
+    <string name="date_of_birth">Date Of Birth :</string>
+    <string name="reviews">Reviews</string>
+
+    // login
+    <string name="login">Login</string>
+    <string name="email">E-mail</string>
+    <string name="password">Password</string>
+    <string name="or">or</string>
+    <string name="login_with">Login With</string>
+
+    // intro
+    <string name="sign_up">Sign up</string>
+    <string name="intro_data">Trfihi mate will take you to the real world of entertainment not only the virtual world</string>
+    <string name="welcome">Welcome!</string>
+
+    //terms
+    <string name="terms_and_conditions">Terms &amp; Conditions</string>
+
+    //register
+    <string name="terms_title">By Signing up, you agree to our</string>
+    <string name="register">Register</string>
+    <string name="registration">Registration</string>
+    <string name="register_with">Register With</string>
+    <string name="name">Name</string>
+    <string name="mobile">Mobile</string>
+    <string name="confirm_password">Confirm password</string>
+
+    //evaluation
+    <string name="ok">OK</string>
+    <string name="evaluation">Evaluation</string>
+
+    //verification
+    <string name="verification">Verification</string>
+    <string name="verification_data">A verification code has been sent to your mobile phone, Key in the verification code to complete your registration</string>
+    <string name="enter_code_here">Enter Code Here</string>
+    <string name="verify">Verify</string>
+    <string name="resend_code">Resend Code</string>
+
+
+    //edit profile
+    <string name="profile_image">Profile Image</string>
+    <string name="save">Save</string>
+    <string name="show_prof_img">Show my profile image</string>
+    <string name="show_birth_date">Show my birth date</string>
+    <string name="show_gender">Show my gender</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+
+
+    //create new event
+    <string name="create_game_event">Create Game Event</string>
+    <string name="i_want_to_play">I want to play</string>
+    <string name="required_players">Required players</string>
+    <string name="playing_time">Playing time</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="location">Location</string>
+    <string name="current">Current</string>
+    <string name="others">Other</string>
+    <string name="enter_region">Enter region play</string>
+    <string name="create">Create</string>
+    <string name="delete">Delete</string>
+    <string name="join">Join</string>
+
+    <string name="game_data_template">{creator_name} need to play {game_name} with {player_no} person, from {from} to {to}, at {city_name}. </string>
+    <string name="join_data_template">You Joined {player_name} for a {game_name} game,for {player_no} players, from {from} to {to}, at {city_name}. </string>
+    <string name="event_data_template">You created a {game_name} game,for {player_no} players, from {from} to {to}, at {city_name}. </string>
+
+
+</resources>

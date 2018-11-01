@@ -1,0 +1,54 @@
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="eventVM"
+            type="com.master_vision.trfihi.home.events.view_model.EventViewModel" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="8dp"
+        tools:context="com.master_vision.trfihi.home.events.view.EventFragment">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/cust_toolbar_bg"
+            android:gravity="center"
+            android:onClick="@{eventVM::onCreateNewEventClick}"
+            android:paddingLeft="35dp"
+            android:paddingTop="10dp"
+            android:paddingRight="35dp"
+            android:paddingBottom="10dp"
+            android:text="@string/create_game_event"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            android:textSize="22sp"
+            bind:font="@{`bold`}" />
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/reviewRV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:scrollbars="horizontal"
+            android:background="@drawable/cust_reg_bg"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+            bind:adapter_event="@{eventVM.adapter}"
+            bind:data_event="@{eventVM.dataList}"
+            tools:listitem="@layout/adapter_events" />
+
+
+    </LinearLayout>
+
+</layout>
+
+
