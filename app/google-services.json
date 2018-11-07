@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "421083424739",
+    "firebase_url": "https://trfihi-mate.firebaseio.com",
+    "project_id": "trfihi-mate",
+    "storage_bucket": "trfihi-mate.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:421083424739:android:2279034e0d8342d3",
+        "android_client_info": {
+          "package_name": "com.master_vision.trfihi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "421083424739-6qb3fje1318cmknfkfbl0bamtm2t3nqj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.master_vision.trfihi",
+            "certificate_hash": "ebd92f836f899967ac35711910d4b2e0468a04bd"
+          }
+        },
+        {
+          "client_id": "421083424739-ci74r1d1ccf9kf17vuudp773qjks12k4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAN2xJDC6jToIpqyU_EzwfV9LDSiHkNDa0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "421083424739-ci74r1d1ccf9kf17vuudp773qjks12k4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

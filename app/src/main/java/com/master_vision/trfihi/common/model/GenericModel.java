@@ -16,6 +16,11 @@ public class GenericModel {
         this.name = name;
     }
 
+    public GenericModel(String id, int image) {
+        this.id = id;
+        this.image = image;
+    }
+
     public GenericModel(String id, int image, String name) {
         this.id = id;
         this.image = image;

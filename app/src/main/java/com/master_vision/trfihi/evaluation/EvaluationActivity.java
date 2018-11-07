@@ -11,8 +11,8 @@ import com.master_vision.trfihi.common.methods.Helper;
 
 public class EvaluationActivity extends AppCompatActivity {
 
-    ActivityEvaluationBinding binding;
-    EvaluationViewModel evalVM;
+    private ActivityEvaluationBinding binding;
+    private EvaluationViewModel evalVM;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,9 +24,6 @@ public class EvaluationActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_evaluation);
         evalVM = new EvaluationViewModel();
         binding.setEvalVM(evalVM);
-
-//binding
-
     }
 
     public void onBackClick(View view) {

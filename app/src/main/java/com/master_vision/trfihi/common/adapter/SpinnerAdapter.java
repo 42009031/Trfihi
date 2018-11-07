@@ -27,7 +27,6 @@ public class SpinnerAdapter<T> extends ArrayAdapter<T> {
     }
 
 
-
     @Override
     public View getDropDownView(int position, View convertView, ViewGroup parent) {
         AdapterDropDownSpinnerBinding dropDownSpinnerBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.adapter_drop_down_spinner, parent, false);

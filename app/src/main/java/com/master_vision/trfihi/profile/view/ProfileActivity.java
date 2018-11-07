@@ -3,8 +3,6 @@ package com.master_vision.trfihi.profile.view;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import com.master_vision.trfihi.R;
 import com.master_vision.trfihi.common.methods.Helper;

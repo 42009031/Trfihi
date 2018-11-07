@@ -9,7 +9,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.master_vision.trfihi.intro.IntroActivity;
 import com.master_vision.trfihi.R;
 

@@ -1,15 +1,34 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.master_vision.trfihi.home.notification.NotificationFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_gravity="center"
-        android:gravity="center"
+    <data>
+
+        <variable
+            name="notVM"
+            type="com.master_vision.trfihi.home.notification.view_model.NotificationViewModel" />
+    </data>
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="notification fragment" />
+        tools:context="com.master_vision.trfihi.home.notification.view.NotificationFragment">
 
-</FrameLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/reviewRV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:padding="3dp"
+            android:scrollbars="horizontal"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+            bind:adapter_notifications="@{notVM.adapter}"
+            bind:data_notifications="@{notVM.dataList}"
+            tools:listitem="@layout/adapter_notification" />
+
+    </FrameLayout>
+</layout>
+
+
+

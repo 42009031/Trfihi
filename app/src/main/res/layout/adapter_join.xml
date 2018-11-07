@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="joinAdpVM"
+            type="com.master_vision.trfihi.home.join.view_model.JoinAdapterViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{joinAdpVM::onJoinItemClick}"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/itemRole"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_margin="5dp"
+                android:background="#c094ff"
+                android:orientation="horizontal"
+                android:padding="1dp"
+                app:cardBackgroundColor="#c094ff"
+                app:cardCornerRadius="35dp"
+                app:cardElevation="5dp">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:padding="1dp"
+                    android:src="@drawable/empty"
+                    bind:circle_image_url="@{joinAdpVM.profileImageUrl}" />
+
+            </android.support.v7.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <!--android:text="@{joinAdpVM.content}"-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="test test test test test test test test test test test test test test test test"
+                    android:textColor="#333333"
+                    android:textSize="14sp"
+                    bind:font="@{``}" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_gravity="end"
+                    android:gravity="end"
+                    android:layout_marginStart="5dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:onClick="@{joinAdpVM::onCancelClick}"
+                        android:textColor="#27b5eb"
+                        android:textSize="14sp"
+                        android:textAllCaps="false"
+                        android:text="@string/cancel"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:background="@drawable/cust_event_bg"
+                        bind:font="@{``}" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.6dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="#c094ff" />
+
+    </RelativeLayout>
+</layout>

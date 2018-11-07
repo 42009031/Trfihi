@@ -6,10 +6,10 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import com.master_vision.trfihi.home.events.view.EventFragment;
 import com.master_vision.trfihi.home.games.view.GameFragment;
+import com.master_vision.trfihi.home.join.view.JoinFragment;
+import com.master_vision.trfihi.home.messages.view.MessageFragment;
+import com.master_vision.trfihi.home.notification.view.NotificationFragment;
 
-import com.master_vision.trfihi.home.medals.MedalsFragment;
-import com.master_vision.trfihi.home.messages.MessageFragment;
-import com.master_vision.trfihi.home.notification.NotificationFragment;
 
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
@@ -30,7 +30,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
             case 2:
                 return NotificationFragment.newInstance();
             case 3:
-                return MedalsFragment.newInstance();
+                return JoinFragment.newInstance();
             case 4:
                 return EventFragment.newInstance();
             default:

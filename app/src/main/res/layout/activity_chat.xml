@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="chatVM"
+            type="com.master_vision.trfihi.chat.view_model.ChatViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.master_vision.trfihi.chat.view.ChatActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="@drawable/cust_toolbar_bg"
+            android:elevation="5dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingTop="5dp">
+
+            <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@android:color/transparent"
+                android:onClick="onBackClick"
+                android:src="@drawable/back" />
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/itemRole"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="5dp"
+                android:background="#c094ff"
+                android:orientation="horizontal"
+                android:padding="1dp"
+                app:cardBackgroundColor="#c094ff"
+                app:cardCornerRadius="25dp"
+                app:cardElevation="5dp">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:padding="1dp"
+                    android:src="@drawable/empty"
+                    bind:circle_image_url="@{chatVM.profileImageUrl}" />
+
+            </android.support.v7.widget.CardView>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:text="@{chatVM.name}"
+                android:textColor="#fff"
+                android:textSize="18sp"
+                bind:font="@{`bold`}" />
+
+            <ImageButton
+                android:layout_width="30dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@android:color/transparent"
+                android:onClick="@{chatVM::onVideoClick}"
+                android:src="@drawable/chat_video" />
+
+            <ImageButton
+                android:layout_width="30dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@android:color/transparent"
+                android:onClick="@{chatVM::onCallClick}"
+                android:src="@drawable/chat_call" />
+
+            <ImageButton
+                android:layout_width="30dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@android:color/transparent"
+                android:onClick="@{chatVM::onAttachmentClick}"
+                android:src="@drawable/chat_attachment" />
+
+
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/reviewRV"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+            bind:adapter_chat="@{chatVM.adapter}"
+            bind:data_chat="@{chatVM.dataList}"
+            bind_scroll_position="@{chatVM.scrollPosition}"
+            tools:listitem="@layout/adapter_chat" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/cust_reg_bg"
+                android:textColor="#000000"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:enabled="true"
+                android:layout_margin="2dp"
+                android:onClick="@{chatVM::onStartEditing}"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@={chatVM.message}"
+                android:hint="@string/hint_chat_message"
+                android:textSize="16sp"
+                bind:font="@{``}" />
+
+            <ImageButton
+                android:layout_width="65dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@android:color/transparent"
+                android:onClick="@{chatVM::onSendClick}"
+                android:src="@drawable/chat_send" />
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

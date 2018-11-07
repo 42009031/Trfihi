@@ -6,7 +6,7 @@
 
         <variable
             name="regVM"
-            type="com.master_vision.trfihi.registration.register.RegistrationViewModel" />
+            type="com.master_vision.trfihi.registration.register.view_model.RegistrationViewModel" />
     </data>
 
     <ScrollView
@@ -21,7 +21,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
+                android:layout_height="60dp"
                 android:background="@drawable/cust_toolbar_bg"
                 android:elevation="5dp"
                 android:gravity="center"
@@ -122,7 +122,9 @@
                     <Spinner
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        bind:spinner_adapter="@{regVM.spinnerAdapter}"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        bind:spinner_adapter="@{regVM.flagsSpinnerAdapter}"
                         android:onItemSelected="@{(parent,view,pos,id)->regVM.onSelectItem(parent,view,pos,id)}"
                         bind:set_spinner_selection="@{regVM.spinnerSelectionPosition}"/>
 
@@ -317,7 +319,7 @@
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:elevation="5dp"
-                    android:onClick="@{regVM::onFacebookClick}"
+                    android:onClick="onFacebookClick"
                     android:src="@drawable/face" />
 
                 <View
@@ -329,20 +331,10 @@
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:elevation="5dp"
-                    android:onClick="@{regVM::onGoogleClick}"
+                    android:onClick="onGoogleClick"
                     android:src="@drawable/google" />
 
-                <View
-                    android:layout_width="20dp"
-                    android:layout_height="match_parent" />
 
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
-                    android:elevation="5dp"
-                    android:onClick="@{regVM::onTwitterClick}"
-                    android:src="@drawable/twitter" />
 
             </LinearLayout>
 

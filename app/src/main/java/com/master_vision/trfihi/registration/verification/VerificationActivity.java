@@ -10,11 +10,14 @@ import com.master_vision.trfihi.R;
 
 import com.master_vision.trfihi.common.methods.Helper;
 import com.master_vision.trfihi.databinding.ActivityVerificationBinding;
+import com.master_vision.trfihi.registration.register.model.RegistrationRequestModel;
+import com.master_vision.trfihi.registration.register.model.RegistrationResponseModel;
 
 public class VerificationActivity extends AppCompatActivity {
 
     private ActivityVerificationBinding binding;
     private VerificationViewModel verVM;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,11 +25,10 @@ public class VerificationActivity extends AppCompatActivity {
         bind();
     }
 
-
-
     private void bind() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_verification);
-        verVM = new VerificationViewModel();
+        verVM = new VerificationViewModel(this, (RegistrationRequestModel) getIntent().getParcelableExtra("RegistrationModel"),
+                getIntent().getStringExtra("PhoneVerificationId"));
         binding.setVerifVM(verVM);
     }
 

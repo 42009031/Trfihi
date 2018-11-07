@@ -8,11 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.master_vision.trfihi.R;
-import com.master_vision.trfihi.databinding.AdapterEventsBinding;
+
 import com.master_vision.trfihi.databinding.AdapterGameBinding;
-import com.master_vision.trfihi.home.events.adapter.EventAdapter;
-import com.master_vision.trfihi.home.events.model.EventModel;
-import com.master_vision.trfihi.home.events.view_model.EventAdapterViewModel;
 import com.master_vision.trfihi.home.games.model.GameModel;
 import com.master_vision.trfihi.home.games.view_model.GameAdapterViewModel;
 

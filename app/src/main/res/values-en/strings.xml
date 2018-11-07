@@ -72,10 +72,13 @@
     <string name="create">Create</string>
     <string name="delete">Delete</string>
     <string name="join">Join</string>
+    <string name="cancel">Cancel</string>
+
 
     <string name="game_data_template">{creator_name} need to play {game_name} with {player_no} person, from {from} to {to}, at {city_name}. </string>
     <string name="join_data_template">You Joined {player_name} for a {game_name} game,for {player_no} players, from {from} to {to}, at {city_name}. </string>
     <string name="event_data_template">You created a {game_name} game,for {player_no} players, from {from} to {to}, at {city_name}. </string>
 
-
+    //chat
+    <string name="hint_chat_message">Type a message</string>
 </resources>

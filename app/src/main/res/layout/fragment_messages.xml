@@ -1,15 +1,30 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.master_vision.trfihi.home.messages.MessageFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_gravity="center"
-        android:gravity="center"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="messVM"
+            type="com.master_vision.trfihi.home.messages.viewmodel.MessageViewModel"/>
+    </data>
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="message fragment" />
+        tools:context="com.master_vision.trfihi.home.messages.view.MessageFragment">
 
-</FrameLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/reviewRV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:padding="3dp"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+            android:scrollbars="horizontal"
+            app:adapter_messages="@{messVM.adapter}"
+            app:data_messages="@{messVM.dataList}"
+            tools:listitem="@layout/adapter_messages" />
+
+    </FrameLayout>
+</layout>
+
+
+

@@ -27,7 +27,7 @@
                 android:layout_height="70dp"
                 android:layout_margin="5dp"
                 android:orientation="horizontal"
-                app:cardBackgroundColor="#000"
+                app:cardBackgroundColor="#ccc"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="5dp">
 

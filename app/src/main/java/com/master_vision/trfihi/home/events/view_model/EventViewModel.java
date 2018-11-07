@@ -1,15 +1,13 @@
 package com.master_vision.trfihi.home.events.view_model;
 
-import android.app.Activity;
+
 import android.content.Intent;
 import android.view.View;
-
 import com.master_vision.trfihi.TrfihiApp;
 import com.master_vision.trfihi.common.methods.Helper;
-import com.master_vision.trfihi.create_event.CreateEventActivity;
+import com.master_vision.trfihi.create_event.view.CreateEventActivity;
 import com.master_vision.trfihi.home.events.adapter.EventAdapter;
 import com.master_vision.trfihi.home.events.model.EventModel;
-
 import java.util.ArrayList;
 
 public class EventViewModel {

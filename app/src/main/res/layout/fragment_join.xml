@@ -1,0 +1,34 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="joinVM"
+            type="com.master_vision.trfihi.home.join.view_model.JoinViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.master_vision.trfihi.home.join.JoinFragment">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/reviewRV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:padding="3dp"
+            android:scrollbars="horizontal"
+            bind:adapter_join="@{joinVM.adapter}"
+            bind:data_join="@{joinVM.dataList}"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+            tools:listitem="@layout/adapter_messages" />
+
+    </FrameLayout>
+</layout>
+
+
+

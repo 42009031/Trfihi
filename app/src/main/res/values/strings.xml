@@ -69,10 +69,17 @@
     <string name="create">Create</string>
     <string name="delete">Delete</string>
     <string name="join">Join</string>
+    <string name="cancel">Cancel</string>
 
     <string name="game_data_template">{creator_name} need to play {game_name} with {player_no} person, from {from} to {to}, at {city_name}. </string>
     <string name="join_data_template">You Joined {player_name} for a {game_name} game,for {player_no} players, from {from} to {to}, at {city_name}. </string>
     <string name="event_data_template">You created a {game_name} game,for {player_no} players, from {from} to {to}, at {city_name}. </string>
 
+    //chat
+    <string name="hint_chat_message">Type a message</string>
 
+    // facebook IDS
+    <string name="facebook_app_id">925104267693895</string>
+    <string name="fb_login_protocol_scheme">fb925104267693895</string>
+    <string name="web_client_id">421083424739-ci74r1d1ccf9kf17vuudp773qjks12k4.apps.googleusercontent.com</string>
 </resources>

@@ -2,17 +2,12 @@ package com.master_vision.trfihi.profile.viewModel;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
-import android.databinding.BindingAdapter;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
-
 import com.master_vision.trfihi.BR;
 import com.master_vision.trfihi.profile.adapter.ReviewAdapter;
 import com.master_vision.trfihi.profile.model.ProfileModel;
 import com.master_vision.trfihi.profile.model.ReviewModel;
-
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class ProfileViewModel extends BaseObservable {
 

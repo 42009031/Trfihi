@@ -69,10 +69,13 @@
     <string name="create">إنشاء</string>
     <string name="delete">حذف</string>
     <string name="join">إنضم الأن</string>
-
+    <string name="cancel">إلغاء</string>
     <string name="game_data_template">{creator_name} يريد لعب {game_name} مع {player_no} لاعب, من {from} إلي {to}, في {city_name}. </string>
     <string name="join_data_template">تم ضم {player_name} فى لعبة {game_name}, مع {player_no} لاعب, من {from} إلي {to}, في {city_name}. </string>
     <string name="event_data_template">تم إنشاء لعبة {game_name}, مع {player_no} لاعب, من {from} إلي {to}, في {city_name}. </string>
 
 
+
+    //chat
+    <string name="hint_chat_message">أدخل النص</string>
 </resources>

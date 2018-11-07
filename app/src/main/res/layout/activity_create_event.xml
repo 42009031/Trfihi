@@ -1,9 +1,375 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.master_vision.trfihi.create_event.CreateEventActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-</android.support.constraint.ConstraintLayout>
+    <data>
+
+        <variable
+            name="eventVM"
+            type="com.master_vision.trfihi.create_event.view_model.CreateEventViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.master_vision.trfihi.create_event.view.CreateEventActivity">
+
+        <LinearLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@drawable/cust_toolbar_bg"
+            android:elevation="5dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@android:color/transparent"
+                android:onClick="onBackClick"
+                android:src="@drawable/back" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/create_game_event"
+                android:textColor="#fff"
+                android:textSize="25sp"
+                bind:font="@{``}" />
+        </LinearLayout>
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/header">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="15dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/i_want_to_play"
+                        android:textColor="#333333"
+                        android:textSize="20sp"
+                        bind:font="@{``}" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:background="@drawable/cust_reg_bg"
+                        android:hint="@string/i_want_to_play"
+                        android:inputType="text"
+                        android:padding="14dp"
+                        android:text="@={eventVM.gameName}"
+                        android:textSize="18sp"
+                        bind:font="@{``}" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/required_players"
+                        android:textColor="#333333"
+                        android:textSize="20sp"
+                        bind:font="@{``}" />
+
+                    <View
+                        android:layout_width="10dp"
+                        android:layout_height="match_parent"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:background="@drawable/cust_reg_bg"
+                        android:hint="@string/required_players"
+                        android:inputType="number"
+                        android:padding="14dp"
+                        android:text="@={eventVM.playerNo}"
+                        android:textSize="18sp"
+                        bind:font="@{``}" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/playing_time"
+                        android:textColor="#333333"
+                        android:textSize="20sp"
+                        bind:font="@{``}" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <View
+                            android:layout_width="80dp"
+                            android:layout_height="1.5dp"
+                            android:background="#c094ff" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:gravity="center"
+                            android:text="@string/from"
+                            android:textColor="#333"
+                            android:textSize="17sp"
+                            bind:font="@{``}" />
+
+                        <View
+                            android:layout_width="80dp"
+                            android:layout_height="1.5dp"
+                            android:background="#c094ff" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="8dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/cust_reg_bg"
+                            android:gravity="center"
+                            android:hint="00/00/0000"
+                            android:onClick="@{eventVM::onFromDateClick}"
+                            android:enabled="true"
+                            android:focusable="false"
+                            android:padding="14dp"
+                            android:text="@={eventVM.fromDate}"
+                            android:textSize="18sp"
+                            bind:font="@{``}" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="8dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/cust_reg_bg"
+                            android:gravity="center"
+                            android:hint="00:00 00"
+                            android:onClick="@{eventVM::onFromTimeClick}"
+                            android:enabled="true"
+                            android:focusable="false"
+                            android:padding="14dp"
+                            android:text="@={eventVM.fromTime}"
+                            android:textSize="18sp"
+                            bind:font="@{``}" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <View
+                            android:layout_width="80dp"
+                            android:layout_height="1.5dp"
+                            android:background="#c094ff" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:gravity="center"
+                            android:text="@string/to"
+                            android:textColor="#333"
+                            android:textSize="17sp"
+                            bind:font="@{``}" />
+
+                        <View
+                            android:layout_width="80dp"
+                            android:layout_height="1.5dp"
+                            android:background="#c094ff" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="8dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/cust_reg_bg"
+                            android:gravity="center"
+                            android:hint="00/00/0000"
+                            android:enabled="true"
+                            android:focusable="false"
+                            android:onClick="@{eventVM::onToDateClick}"
+                            android:padding="14dp"
+                            android:text="@={eventVM.toDate}"
+                            android:textSize="18sp"
+                            bind:font="@{``}" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="8dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/cust_reg_bg"
+                            android:enabled="true"
+                            android:focusable="false"
+                            android:gravity="center"
+                            android:hint="00:00 00"
+                            android:onClick="@{eventVM::onToTimeClick}"
+                            android:padding="14dp"
+                            android:text="@={eventVM.toTime}"
+                            android:textSize="18sp"
+                            bind:font="@{``}" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/location"
+                        android:textColor="#333333"
+                        android:textSize="20sp"
+                        bind:font="@{``}" />
+
+
+                    <android.support.v7.widget.AppCompatCheckBox
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:buttonTint="#c094ff"
+                        android:checked="@{eventVM.isLocationCurrentCheck}"
+                        android:onClick="@{eventVM::onLocationCurrentClick}"
+                        android:text="@string/current"
+                        android:textSize="16sp"
+                        bind:font="@{``}" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:orientation="horizontal">
+
+                        <android.support.v7.widget.AppCompatCheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:buttonTint="#c094ff"
+                            android:checked="@{eventVM.isLocationOtherChecked}"
+                            android:gravity="center"
+                            android:onClick="@{eventVM::onLocationOtherClick}"
+                            android:text="@string/others"
+                            android:textSize="16sp"
+                            bind:font="@{``}" />
+
+                        <View
+                            android:layout_width="10dp"
+                            android:layout_height="match_parent" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/cust_reg_bg"
+                            android:hint="@string/enter_region"
+                            android:inputType="text"
+                            android:padding="10dp"
+                            android:text="@={eventVM.locationET}"
+                            android:textSize="18sp"
+                            android:visibility="@{eventVM.isShowLocationOther}"
+                            bind:font="@{``}" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+                <Button
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/cust_toolbar_bg"
+                    android:gravity="center"
+                    android:onClick="@{eventVM::onCreateClick}"
+                    android:text="@string/create"
+                    android:textAllCaps="false"
+                    android:textColor="#fff"
+                    android:textSize="21sp"
+                    bind:font="@{``}" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </RelativeLayout>
+</layout>
+
