@@ -123,7 +123,7 @@ public class RegistrationViewModel extends BaseObservable {
         setUpVerificationCallbacks(new RegistrationRequestModel(email_str,
                 name_str,
                 email_str,
-                mobile_str,
+                phoneNumber,
                 password_str));
 
         PhoneAuthProvider.getInstance().verifyPhoneNumber(

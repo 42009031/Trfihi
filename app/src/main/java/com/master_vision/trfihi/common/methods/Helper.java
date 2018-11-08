@@ -13,7 +13,13 @@ public class Helper {
     public final static String AR = "ar";
     public final static String EN = "en";
     public final static AlphaAnimation BtnClickAnimation = new AlphaAnimation(1F, 0.6F);
-    public final static String TOKEN = "token";
+    public final static String TOKEN = "Token";
+    public final static String DISPLAY_NAME = "DisplayName";
+    public final static String USER_NAME = "UserName";
+    public final static String PHONE_NUMBER = "PhoneNumber";
+    public final static String PASSWORD_HASH = "PasswordHash";
+    public final static String PROFILE_IMAGE = "ProfileImage";
+
     private final static String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     private final static String passwordPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%_^&+=-])(?=\\S+$).{6,}$";
     private static ProgressDialog progress;

@@ -52,8 +52,6 @@ public class RegistrationActivity extends AppCompatActivity {
     private GoogleSignInClient mGoogleSignInClient;
     private final int RC_SIGN_IN = 111;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,6 +92,11 @@ public class RegistrationActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("RegFacebook", "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+                            String displayName = user.getDisplayName();
+                            String phoneNumber = user.getPhoneNumber();
+                            String email = user.getEmail();
+                            String profileImage = user.getPhotoUrl().toString();
+
                             updateUI();
                         } else {
                             // If sign in fails, display a message to the user.
