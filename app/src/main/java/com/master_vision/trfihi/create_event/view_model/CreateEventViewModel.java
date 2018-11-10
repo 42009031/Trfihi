@@ -42,13 +42,11 @@ public class CreateEventViewModel {
     public ObservableField<Integer> isShowLocationOther = new ObservableField<>(View.GONE);
 
     private Context context;
-    private FusedLocationProviderClient client;
 
     // constructor
     public CreateEventViewModel(Context context) {
         this.context = context;
         requestPermission();
-        this.client = LocationServices.getFusedLocationProviderClient(context);
     }
 
     // buttons onclick listener
@@ -157,9 +155,11 @@ public class CreateEventViewModel {
             Date fDate = formatter.parse(fromDate.get());
             Date tDate = formatter.parse(toDate.get());
             if (fDate.compareTo(tDate) < 0) {
+                return true;
+            }else{
                 return false;
             }
-            return true;
+
         } catch (ParseException e1) {
             e1.printStackTrace();
             return false;
