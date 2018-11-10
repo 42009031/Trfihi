@@ -1,28 +1,24 @@
 package com.master_vision.trfihi.registration.register.view;
 
+
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
-
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
-import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
@@ -34,10 +30,9 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import com.master_vision.trfihi.R;
 import com.master_vision.trfihi.common.methods.Helper;
 import com.master_vision.trfihi.databinding.ActivityRegistrationBinding;
+import com.master_vision.trfihi.registration.register.model.RegistrationRequestModel;
 import com.master_vision.trfihi.registration.register.view_model.RegistrationViewModel;
-
 import java.util.Arrays;
-
 import io.reactivex.annotations.NonNull;
 
 
@@ -60,6 +55,70 @@ public class RegistrationActivity extends AppCompatActivity {
         initGoogle();
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            updateUI(new RegistrationRequestModel(currentUser.getDisplayName(),
+                    currentUser.getEmail(),
+                    currentUser.getPhoneNumber(),
+                    "",
+                    currentUser.getPhotoUrl().toString()));
+        }
+
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        if (account != null) {
+            updateUI(new RegistrationRequestModel(account.getDisplayName(),
+                    account.getEmail(),
+                    "",
+                    "",
+                    account.getPhotoUrl().toString()));
+        }
+
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == RC_SIGN_IN) {
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            try {
+                // Google Sign In was successful, authenticate with Firebase
+                GoogleSignInAccount account = task.getResult(ApiException.class);
+                firebaseAuthWithGoogle(account);
+            } catch (ApiException e) {
+                // Google Sign In failed, update UI appropriately
+                Log.w("RegGoogle", "Google sign in failed", e);
+                // ...
+            }
+        } else {
+            // Pass the activity result back to the Facebook SDK
+            mCallbackManager.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
+// helper methods
+    private void bind() {
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_registration);
+        regVM = new RegistrationViewModel(this);
+        binding.setRegVM(regVM);
+    }
+
+    public void onBackClick(View view) {
+        view.startAnimation(Helper.BtnClickAnimation);
+        onBackPressed();
+    }
+
     private void initGoogle() {
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.web_client_id))
@@ -74,12 +133,6 @@ public class RegistrationActivity extends AppCompatActivity {
         mCallbackManager = CallbackManager.Factory.create();
     }
 
-    private void bind() {
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_registration);
-        regVM = new RegistrationViewModel(this);
-        binding.setRegVM(regVM);
-    }
-
     private void handleFacebookAccessToken(AccessToken token) {
         Log.d("RegFacebook", "handleFacebookAccessToken:" + token);
 
@@ -92,77 +145,22 @@ public class RegistrationActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("RegFacebook", "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            String displayName = user.getDisplayName();
-                            String phoneNumber = user.getPhoneNumber();
-                            String email = user.getEmail();
-                            String profileImage = user.getPhotoUrl().toString();
-
-                            updateUI();
+                            updateUI(new RegistrationRequestModel(user.getDisplayName(),
+                                    user.getEmail(),
+                                    user.getPhoneNumber(),
+                                    "",
+                                    user.getPhotoUrl().toString()));
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("RegFacebook", "signInWithCredential:failure", task.getException());
                             Toast.makeText(RegistrationActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
-                            updateUI();
+                            updateUI(null);
                         }
 
                         // ...
                     }
                 });
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-
-        if (requestCode == RC_SIGN_IN) {
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            try {
-                // Google Sign In was successful, authenticate with Firebase
-                GoogleSignInAccount account = task.getResult(ApiException.class);
-                firebaseAuthWithGoogle(account);
-            } catch (ApiException e) {
-                // Google Sign In failed, update UI appropriately
-                Log.w("RegGoogle", "Google sign in failed", e);
-                // ...
-            }
-        }else{
-            // Pass the activity result back to the Facebook SDK
-            mCallbackManager.onActivityResult(requestCode, resultCode, data);
-        }
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
-            updateUI();
-        }
-
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-        if(account != null){
-            updateUI();
-        }
-
-
-    }
-
-    private void updateUI() {
-        Toast.makeText(this, "You are logged in", Toast.LENGTH_SHORT).show();
-    }
-
-    public void onBackClick(View view) {
-        view.startAnimation(Helper.BtnClickAnimation);
-        onBackPressed();
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        finish();
     }
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
@@ -177,19 +175,30 @@ public class RegistrationActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("RegGoogle", "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI();
+                            updateUI(new RegistrationRequestModel(user.getDisplayName(),
+                                    user.getEmail(),
+                                    user.getPhoneNumber(),
+                                    "",
+                                    user.getPhotoUrl().toString()));
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("RegGoogle", "signInWithCredential:failure", task.getException());
                             Toast.makeText(RegistrationActivity.this, "Authentication Failed.", Toast.LENGTH_SHORT).show();
-                            updateUI();
+                            updateUI(null);
                         }
 
                     }
                 });
     }
 
+    private void updateUI(RegistrationRequestModel regReqParam) {
+        if (regReqParam != null) {
+            regVM.sendVerificationCode(regReqParam);
+        }
+    }
 
+
+    // buttons click listener
     public void onGoogleClick(View view) {
         view.startAnimation(Helper.BtnClickAnimation);
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();

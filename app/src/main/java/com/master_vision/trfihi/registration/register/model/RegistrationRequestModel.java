@@ -23,13 +23,14 @@ public class RegistrationRequestModel implements Parcelable{
     private String PhoneNumber;
     @SerializedName("Password")
     private String Password;
+    private String profileImage;
 
-    public RegistrationRequestModel(String userName, String displayName, String email, String phoneNumber, String password) {
-        UserName = userName;
+    public RegistrationRequestModel(String displayName, String email, String phoneNumber, String password, String profileImage) {
         DisplayName = displayName;
         Email = email;
         PhoneNumber = phoneNumber;
         Password = password;
+        this.profileImage = profileImage;
     }
 
     protected RegistrationRequestModel(Parcel in) {
@@ -38,6 +39,7 @@ public class RegistrationRequestModel implements Parcelable{
         Email = in.readString();
         PhoneNumber = in.readString();
         Password = in.readString();
+        profileImage = in.readString();
     }
 
     public static final Creator<RegistrationRequestModel> CREATOR = new Creator<RegistrationRequestModel>() {
@@ -51,6 +53,14 @@ public class RegistrationRequestModel implements Parcelable{
             return new RegistrationRequestModel[size];
         }
     };
+
+    public String getProfileImage() {
+        return profileImage;
+    }
+
+    public void setProfileImage(String profileImage) {
+        this.profileImage = profileImage;
+    }
 
     public String getUserName() {
         return UserName;
@@ -104,5 +114,7 @@ public class RegistrationRequestModel implements Parcelable{
         parcel.writeString(Email);
         parcel.writeString(PhoneNumber);
         parcel.writeString(Password);
+        parcel.writeString(profileImage);
+
     }
 }

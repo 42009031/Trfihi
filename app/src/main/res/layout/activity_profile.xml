@@ -203,8 +203,8 @@
                     android:padding="3dp"
                     app:layoutManager="android.support.v7.widget.LinearLayoutManager"
                     android:scrollbars="horizontal"
-                    app:adapter_review="@{profVM.adapter}"
-                    app:data_review="@{profVM.data}"
+                    app:adapter_review="@{profVM.reviewAdapter}"
+                    app:data_review="@{profVM.dataList}"
                     tools:listitem="@layout/adapter_review" />
 
             </LinearLayout>

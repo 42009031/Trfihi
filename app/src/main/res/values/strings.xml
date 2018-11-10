@@ -12,6 +12,7 @@
 
     // login
     <string name="login">Login</string>
+    <string name="logout">Logout</string>
     <string name="email">E-mail</string>
     <string name="password">Password</string>
     <string name="or">or</string>
@@ -82,4 +83,13 @@
     <string name="facebook_app_id">925104267693895</string>
     <string name="fb_login_protocol_scheme">fb925104267693895</string>
     <string name="web_client_id">421083424739-ci74r1d1ccf9kf17vuudp773qjks12k4.apps.googleusercontent.com</string>
+
+
+    //dialogs
+    <string name="dialog_mobile_title">Enter you mobile number:</string>
+
+
+    //toast messages
+    <string name="mobile_validation">Please type your mobile no.</string>
+
 </resources>

@@ -8,6 +8,7 @@ import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -124,6 +125,13 @@ public class DataBindingAdapter {
         view.setSelection(pos, true);
     }
 
-
+    @BindingAdapter("bind:updateDate")
+    public static void updateDatePicker(DatePicker view, String date) {
+        String [] dateArray = date.split("/");
+        int day = Integer.parseInt(dateArray[0]);
+        int month = Integer.parseInt(dateArray[1]);
+        int year = Integer.parseInt(dateArray[2]);
+        view.updateDate(year, month, day);
+    }
 
 }

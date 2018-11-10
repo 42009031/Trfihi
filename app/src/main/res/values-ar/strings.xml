@@ -12,6 +12,7 @@
 
     // login
     <string name="login">تسجيل الدخول</string>
+    <string name="logout">تسجيل الخروج</string>
     <string name="email">البريد الإلكتروني</string>
     <string name="password">كلمة المرور</string>
     <string name="or">أو</string>
@@ -78,4 +79,11 @@
 
     //chat
     <string name="hint_chat_message">أدخل النص</string>
+
+    //dialogs
+    <string name="dialog_mobile_title">أدخل رقم الهاتف الخاص بك :</string>
+
+    //toast messages
+    <string name="mobile_validation">برجاء إدخال رقم الهاتف الخاص بك.</string>
+
 </resources>

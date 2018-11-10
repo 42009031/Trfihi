@@ -1,7 +1,12 @@
 package com.master_vision.trfihi.home._main;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.Uri;
+import android.os.Build;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -9,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,9 +22,14 @@ import android.widget.Toast;
 
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.master_vision.trfihi.R;
+import com.master_vision.trfihi.common.methods.Helper;
+import com.master_vision.trfihi.common.methods.SharedPreferencesManager;
+import com.master_vision.trfihi.create_event.view.CreateEventActivity;
 import com.master_vision.trfihi.edit_profile.EditProfileActivity;
+import com.master_vision.trfihi.login.LoginActivity;
+
+import java.util.Locale;
 
 
 public class HomeActivity extends AppCompatActivity implements OnFragmentInteractionListener {
@@ -26,6 +37,7 @@ public class HomeActivity extends AppCompatActivity implements OnFragmentInterac
 
     private ViewPager mViewPager;
     private FirebaseAuth mAuth;
+    boolean doubleBackToExitPressedOnce = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,8 +87,7 @@ public class HomeActivity extends AppCompatActivity implements OnFragmentInterac
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                startActivity(new Intent(HomeActivity.this, CreateEventActivity.class));
             }
         });
     }
@@ -84,22 +95,37 @@ public class HomeActivity extends AppCompatActivity implements OnFragmentInterac
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_home, menu);
+        String defaultLang = String.valueOf(Locale.getDefault());
+        if (defaultLang.equalsIgnoreCase("ar")) {
+            menu.findItem(R.id.change_language).setTitle("English");
+        } else {
+            menu.findItem(R.id.change_language).setTitle("العربية");
+        }
+
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
+        if (id == R.id.logout) {
             mAuth.signOut();
             LoginManager.getInstance().logOut();
+            SharedPreferencesManager.clearSharedPreference();
             updateUI();
             return true;
         } else if (id == R.id.edit_profile) {
             startActivity(new Intent(HomeActivity.this, EditProfileActivity.class));
             return true;
         } else if (id == R.id.change_language) {
-
+            if (item.getTitle().equals("English")) {
+                setLocal("en");
+                item.setTitle("العربية");
+            } else {
+                setLocal("ar");
+                item.setTitle("English");
+            }
+            restartActivity();
             return true;
         }
 
@@ -112,18 +138,61 @@ public class HomeActivity extends AppCompatActivity implements OnFragmentInterac
 
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser == null) {
-            updateUI();
-        }
-
-    }
 
     private void updateUI() {
-        Toast.makeText(this, "display Login ", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(HomeActivity.this, LoginActivity.class));
+        finish();
     }
+
+    private void setLocal(String mComingLocal) {
+        Resources res = getResources();
+        // Change locale settings in the app.
+        DisplayMetrics dm = res.getDisplayMetrics();
+        android.content.res.Configuration conf = res.getConfiguration();
+        Locale local = Locale.getDefault();
+        if (mComingLocal.contains(Helper.AR)) {
+            local = new Locale(Helper.AR, "eg");
+        } else {
+            local = new Locale(Helper.EN, "us");
+        }
+        Locale.setDefault(local);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            conf.setLocale(local);
+            conf.setLayoutDirection(local);
+        } else {
+            conf.locale = local;
+        }
+        res.updateConfiguration(conf, dm);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            finish();
+            System.exit(0);
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce = false;
+            }
+        }, 2000);
+
+    }
+
+    private void restartActivity() {
+        Intent intent = getIntent();
+        finish();
+        startActivity(intent);
+    }
+
+//    enum Language{
+//        ARABIC,
+//        ENGLISH
+//    }
 }

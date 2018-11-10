@@ -4,9 +4,9 @@ import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.view.View;
 import android.widget.Toast;
-
 import com.master_vision.trfihi.common.methods.Helper;
 import com.master_vision.trfihi.profile.model.ReviewModel;
+
 
 public class ReviewItemViewModel extends BaseObservable {
 
@@ -15,10 +15,11 @@ public class ReviewItemViewModel extends BaseObservable {
     private ReviewModel reviewModel;
     private String profileImageURL ;
 
+
     public ReviewItemViewModel(ReviewModel reviewModel){
         this.reviewModel = reviewModel;
 
-        this.evaluation = reviewModel.getEvaluation();
+        this.evaluation = Float.parseFloat(reviewModel.getEvaluation());
         this.reviewer = reviewModel.getReviewer();
         this.review = reviewModel.getReview_ar();
         this.review = reviewModel.getReview_en();
@@ -49,4 +50,7 @@ public class ReviewItemViewModel extends BaseObservable {
     public String getReview() {
         return this.review;
     }
+
+
+
 }

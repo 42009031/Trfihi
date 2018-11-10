@@ -3,7 +3,14 @@
     package="com.master_vision.trfihi">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+
+    <uses-feature android:name="android.hardware.camera"/>
+    <uses-feature android:name="android.hardware.HardwareBuffer"/>
 
     <application
         android:name=".TrfihiApp"
@@ -13,7 +20,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".splash.SplashActivity">
+        <activity android:name=".home._main.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -27,7 +34,7 @@
         <activity android:name=".login.LoginActivity" />
         <activity android:name=".profile.view.ProfileActivity" />
         <activity android:name=".edit_profile.EditProfileActivity" />
-        <activity android:name=".home._main.HomeActivity" />
+        <!--<activity android:name=".home._main.HomeActivity" />-->
         <activity android:name=".chat.view.ChatActivity"/>
         <activity android:name=".create_event.view.CreateEventActivity" />
 

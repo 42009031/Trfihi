@@ -22,7 +22,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void bind() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
-        loginVM = new LoginViewModel();
+        loginVM = new LoginViewModel(this);
         binding.setLoginVM(loginVM);
     }
 

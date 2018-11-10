@@ -4,11 +4,16 @@ import android.content.Intent;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.master_vision.trfihi.common.methods.Helper;
+import com.master_vision.trfihi.common.methods.SharedPreferencesManager;
+import com.master_vision.trfihi.home._main.HomeActivity;
 import com.master_vision.trfihi.intro.IntroActivity;
 import com.master_vision.trfihi.R;
 
@@ -36,7 +41,6 @@ public class SplashActivity extends AppCompatActivity{
         final Animation topSwipe = AnimationUtils.loadAnimation(SplashActivity.this, R.anim.top_side);
         final Animation bottomSwipe = AnimationUtils.loadAnimation(SplashActivity.this, R.anim.bottom_side);
         final Animation shake = AnimationUtils.loadAnimation(SplashActivity.this, R.anim.shake); // viberate
-        final Animation fadein = AnimationUtils.loadAnimation(SplashActivity.this, R.anim.fadein_anim);
         final Animation bounce = AnimationUtils.loadAnimation(SplashActivity.this, R.anim.bounce);
 
         icon0.startAnimation(bottomSwipe);
@@ -102,7 +106,11 @@ public class SplashActivity extends AppCompatActivity{
 
             @Override
             public void onFinish() {
-                startActivity(new Intent(SplashActivity.this, IntroActivity.class));
+                if(TextUtils.isEmpty(SharedPreferencesManager.getStringValue(Helper.TOKEN))){
+                    startActivity(new Intent(SplashActivity.this, IntroActivity.class));
+                }else{
+                    startActivity(new Intent(SplashActivity.this, HomeActivity.class));
+                }
                 finish();
             }
         }.start();

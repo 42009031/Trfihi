@@ -1,8 +1,32 @@
 package com.master_vision.trfihi.profile.model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class ProfileModel {
 
-    String Id, DisplayName, PhoneNumber, Email, ProfileImageURL, VerficationCode, gender, DOB;
+    @SerializedName("Id")
+    private String Id;
+
+    @SerializedName("DisplayName")
+    private String DisplayName;
+
+    @SerializedName("PhoneNumber")
+    private String PhoneNumber;
+
+    @SerializedName("Email")
+    private String Email;
+
+    @SerializedName("ProfileImageURL")
+    private String ProfileImageURL;
+
+    @SerializedName("VerficationCode")
+    private String VerficationCode;
+
+    @SerializedName("gender")
+    private String gender;
+
+    @SerializedName("DOB")
+    private String DOB;
 
     public ProfileModel(String id, String displayName, String phoneNumber, String email, String profileImageURL, String verficationCode, String gender, String DOB) {
         Id = id;

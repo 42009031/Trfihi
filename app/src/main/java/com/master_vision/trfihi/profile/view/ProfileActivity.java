@@ -36,7 +36,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void bind() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_profile);
-        profVM = new ProfileViewModel();
+        profVM = new ProfileViewModel(this, getIntent().getStringExtra(Helper.USER_ID));
         binding.setProfVM(profVM);
     }
 

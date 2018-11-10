@@ -23,7 +23,7 @@ public class CreateEventActivity extends AppCompatActivity {
 
     private void bind() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_create_event);
-        eventVM = new CreateEventViewModel();
+        eventVM = new CreateEventViewModel(this);
         binding.setEventVM(eventVM);
     }
 

@@ -115,10 +115,15 @@ public class VerificationViewModel {
                         if (tokenResponseModel != null) {
                             SharedPreferencesManager.setStringValue(Helper.TOKEN, tokenResponseModel.getToken_type() + " " + tokenResponseModel.getAccess_token());
                             SharedPreferencesManager.setStringValue(Helper.DISPLAY_NAME, registrationModel.getDisplayName());
+                            SharedPreferencesManager.setStringValue(Helper.USER_ID, responseModel.getId());
                             SharedPreferencesManager.setStringValue(Helper.USER_NAME, registrationModel.getEmail());
                             SharedPreferencesManager.setStringValue(Helper.PHONE_NUMBER, registrationModel.getPhoneNumber());
                             SharedPreferencesManager.setStringValue(Helper.PASSWORD_HASH, responseModel.getPasswordHash());
-                            ((Activity) context).startActivity(new Intent((Activity) context, HomeActivity.class));
+                            if(!TextUtils.isEmpty(registrationModel.getProfileImage())){
+                                SharedPreferencesManager.setStringValue(Helper.PROFILE_IMAGE, registrationModel.getProfileImage());
+                            }
+                            (context).startActivity(new Intent(context, HomeActivity.class));
+                            ((Activity)context).finish();
                         } else {
                             printToast("Server response error !!");
                         }

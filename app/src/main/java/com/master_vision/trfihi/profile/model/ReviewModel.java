@@ -1,39 +1,53 @@
 package com.master_vision.trfihi.profile.model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class ReviewModel {
 
-    private float Evaluation;
-    private int ReviewId;
-    private String UserId, ReviewDate, Review_ar, Review_en, Reviewer, ProfileImageURL;
+    @SerializedName("Evaluation")
+    private String Evaluation;
+
+    @SerializedName("UserId")
+    private String UserId;
+
+    @SerializedName("ReviewDate")
+    private String ReviewDate;
+
+    @SerializedName("Review_ar")
+    private String Review_ar;
+
+    @SerializedName("Review_en")
+    private String Review_en;
+
+    @SerializedName("Reviewer")
+    private String Reviewer;
+
+    @SerializedName("ReviewId")
+    private String ReviewId;
+
+    @SerializedName("ProfileImageURL")
+    private String ProfileImageURL;
 
     public ReviewModel() {
     }
 
-    public ReviewModel(float evaluation, int reviewId, String userId, String reviewDate, String review_ar, String review_en, String reviewer, String profileImageURL) {
+    public ReviewModel(String evaluation, String userId, String reviewDate, String review_ar, String review_en, String reviewer, String reviewId, String profileImageURL) {
         Evaluation = evaluation;
-        ReviewId = reviewId;
         UserId = userId;
         ReviewDate = reviewDate;
         Review_ar = review_ar;
         Review_en = review_en;
         Reviewer = reviewer;
+        ReviewId = reviewId;
         ProfileImageURL = profileImageURL;
     }
 
-    public float getEvaluation() {
+    public String getEvaluation() {
         return Evaluation;
     }
 
-    public void setEvaluation(float evaluation) {
+    public void setEvaluation(String evaluation) {
         Evaluation = evaluation;
-    }
-
-    public int getReviewId() {
-        return ReviewId;
-    }
-
-    public void setReviewId(int reviewId) {
-        ReviewId = reviewId;
     }
 
     public String getUserId() {
@@ -74,6 +88,14 @@ public class ReviewModel {
 
     public void setReviewer(String reviewer) {
         Reviewer = reviewer;
+    }
+
+    public String getReviewId() {
+        return ReviewId;
+    }
+
+    public void setReviewId(String reviewId) {
+        ReviewId = reviewId;
     }
 
     public String getProfileImageURL() {

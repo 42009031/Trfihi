@@ -1,47 +1,43 @@
 package com.master_vision.trfihi.registration.register.view_model;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.BaseObservable;
+import android.databinding.DataBindingUtil;
 import android.databinding.ObservableArrayList;
 import android.databinding.ObservableField;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
+
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+
 import com.google.firebase.FirebaseException;
 import com.google.firebase.FirebaseTooManyRequestsException;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.master_vision.trfihi.R;
-import com.master_vision.trfihi.TrfihiApp;
 import com.master_vision.trfihi.common.model.GenericModel;
 import com.master_vision.trfihi.common.methods.Helper;
-import com.master_vision.trfihi.common.adapter.SpinnerAdapter;
-import com.master_vision.trfihi.common.network.NetworkClient;
-import com.master_vision.trfihi.registration.register.RegistrationWS;
-import com.master_vision.trfihi.registration.register._RegistrationService;
+
 import com.master_vision.trfihi.registration.register.adapter.FlagsSpinnerAdapter;
 import com.master_vision.trfihi.registration.register.model.RegistrationRequestModel;
-import com.master_vision.trfihi.registration.register.model.RegistrationResponseModel;
+import com.master_vision.trfihi.databinding.DialogPhoneNoBinding;
 import com.master_vision.trfihi.registration.terms_conditions.TermsActivity;
 import com.master_vision.trfihi.registration.verification.VerificationActivity;
 
 import java.util.concurrent.TimeUnit;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.annotations.NonNull;
-import io.reactivex.functions.Consumer;
 
 public class RegistrationViewModel extends BaseObservable {
 
@@ -69,14 +65,18 @@ public class RegistrationViewModel extends BaseObservable {
     public ObservableField<String> countryCodeSelectedItem = new ObservableField<>();
     public ObservableField<Integer> spinnerSelectionPosition = new ObservableField<>();
 
+    // dialog
+    public ObservableField<String> mobileDialog = new ObservableField<>();
+
 
     private Context context;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks verificationCallbacks;
     private PhoneAuthProvider.ForceResendingToken resendToken;
 
+    // constructor
     public RegistrationViewModel(Activity context) {
         this.context = context;
-        this.flagsSpinnerAdapter = new FlagsSpinnerAdapter(context,  countryCodeList);
+        this.flagsSpinnerAdapter = new FlagsSpinnerAdapter(context, countryCodeList);
     }
 
     // button click listeners
@@ -118,22 +118,30 @@ public class RegistrationViewModel extends BaseObservable {
             printToast("Error in confirm password");
             return;
         }
-
         String phoneNumber = countryCodeSelectedItem.get() + mobile_str;
-        setUpVerificationCallbacks(new RegistrationRequestModel(email_str,
-                name_str,
+        sendVerificationCode(new RegistrationRequestModel(name_str,
                 email_str,
                 phoneNumber,
-                password_str));
+                password_str,
+                ""));
+    }
 
+    public void sendVerificationCode(RegistrationRequestModel regReqParam) {
+        String mobileNo = regReqParam.getPhoneNumber();
+        if (TextUtils.isEmpty(mobileNo)) {
+            // display Dialog To enter phone number
+            displayDialogToEnterPhoneNo(regReqParam);
+            return;
+        }
+        setUpVerificationCallbacks(regReqParam);
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                phoneNumber,        // Phone number to verify
+                mobileNo,        // Phone number to verify
                 60,                 // Timeout duration
                 TimeUnit.SECONDS,   // Unit of timeout
-                (Activity)context,               // Activity (for callback binding)
+                (Activity) context,               // Activity (for callback binding)
                 verificationCallbacks);
 
-        Helper.displayLoadDialog((Activity)context);
+        Helper.displayLoadDialog((Activity) context);
     }
 
     public void onHideConfirmPassClick(View view) {
@@ -164,7 +172,8 @@ public class RegistrationViewModel extends BaseObservable {
 
     public void onTermsClick(View view) {
         view.startAnimation(Helper.BtnClickAnimation);
-        ((Activity) view.getContext()).startActivity(new Intent((Activity) view.getContext(), TermsActivity.class));
+        (view.getContext()).startActivity(new Intent((Activity) view.getContext(), TermsActivity.class));
+
     }
 
     public void onSelectItem(AdapterView<?> parentView, View selectedItemView, int position, long id) {
@@ -187,8 +196,8 @@ public class RegistrationViewModel extends BaseObservable {
         return false;
     }
 
-    // APIs
 
+    // APIs
     private void setUpVerificationCallbacks(final RegistrationRequestModel requestModel) {
         verificationCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
@@ -226,4 +235,52 @@ public class RegistrationViewModel extends BaseObservable {
         };
     }
 
+
+    //dialog
+    private void displayDialogToEnterPhoneNo(final RegistrationRequestModel regReqParam) {
+        final Dialog dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        final DialogPhoneNoBinding binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.dialog_phone_no, null, false);
+        dialog.setContentView(binding.getRoot());
+        binding.setRegVM(this);
+
+        dialog.show();
+
+        binding.cancelAction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        binding.closeDialogAction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        binding.saveAction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(TextUtils.isEmpty(mobileDialog.get())){
+                    printToast(context.getResources().getString(R.string.mobile_validation));
+                    return;
+                }
+                String phoneNumber = countryCodeSelectedItem.get() + mobileDialog.get();
+                RegistrationRequestModel editRegReqParam = regReqParam;
+                editRegReqParam.setPhoneNumber(phoneNumber);
+                setUpVerificationCallbacks(editRegReqParam);
+                PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                        phoneNumber,        // Phone number to verify
+                        60,                 // Timeout duration
+                        TimeUnit.SECONDS,   // Unit of timeout
+                        (Activity) context,               // Activity (for callback binding)
+                        verificationCallbacks);
+
+                Helper.displayLoadDialog((Activity) context);
+                dialog.dismiss();
+            }
+        });
+
+    }
 }

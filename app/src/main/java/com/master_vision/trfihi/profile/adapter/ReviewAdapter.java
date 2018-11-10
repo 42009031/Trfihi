@@ -20,11 +20,11 @@ import java.util.List;
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder> {
 
     private ArrayList<ReviewModel> mDataset;
-    private Context context;
+
 
     public ReviewAdapter() {
         this.mDataset = new ArrayList<>();
-        this.context = context;
+
     }
 
     @Override
