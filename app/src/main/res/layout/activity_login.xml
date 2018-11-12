@@ -217,7 +217,7 @@
                             android:layout_height="wrap_content"
                             android:background="@android:color/transparent"
                             android:elevation="5dp"
-                            android:onClick="@{loginVM::onFacebookClick}"
+                            android:onClick="onFacebookClick"
                             android:src="@drawable/face" />
 
                         <View
@@ -229,7 +229,7 @@
                             android:layout_height="wrap_content"
                             android:background="@android:color/transparent"
                             android:elevation="5dp"
-                            android:onClick="@{loginVM::onGoogleClick}"
+                            android:onClick="onGoogleClick"
                             android:src="@drawable/google" />
 
                         <!--<View-->

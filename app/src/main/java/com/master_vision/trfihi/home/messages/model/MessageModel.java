@@ -1,8 +1,19 @@
 package com.master_vision.trfihi.home.messages.model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class MessageModel {
 
-String UserId, DisplayName, ImageProfile, UnseenMessageCount, LastMessage;
+    @SerializedName("UserId")
+    private String UserId;
+    @SerializedName("DisplayName")
+    private String DisplayName;
+    @SerializedName("ImageProfile")
+    private String ImageProfile;
+    @SerializedName("UnseenMessageCount")
+    private String UnseenMessageCount;
+    @SerializedName("LastMessage")
+    private String LastMessage;
 
     public MessageModel(String userId, String displayName, String imageProfile, String unseenMessageCount, String lastMessage) {
         UserId = userId;

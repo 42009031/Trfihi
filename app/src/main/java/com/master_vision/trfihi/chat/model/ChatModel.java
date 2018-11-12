@@ -1,19 +1,20 @@
 package com.master_vision.trfihi.chat.model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class ChatModel {
 
-//    "ToUserId": "c426ae73-0b6c-4f92-b0c5-bd571ac64881",
-//            "FromUserId": "527d64cb-24d2-46e7-92ea-e031c2a96c9b",
-//            "Message": "Hi",
-//            "MessageDate": "2018-08-14T22:00:00",
-//            "MessageId": 343,
-//            "isSeen": true
-
+    @SerializedName("ToUserId")
     private String ToUserId;
+    @SerializedName("FromUserId")
     private String FromUserId;
+    @SerializedName("Message")
     private String Message;
+    @SerializedName("MessageDate")
     private String MessageDate;
+    @SerializedName("MessageId")
     private String MessageId;
+    @SerializedName("isSeen")
     private String isSeen;
 
 
@@ -23,6 +24,14 @@ public class ChatModel {
         Message = message;
         MessageDate = messageDate;
         MessageId = messageId;
+        this.isSeen = isSeen;
+    }
+
+    public ChatModel(String toUserId, String fromUserId, String message, String messageDate, String isSeen) {
+        ToUserId = toUserId;
+        FromUserId = fromUserId;
+        Message = message;
+        MessageDate = messageDate;
         this.isSeen = isSeen;
     }
 

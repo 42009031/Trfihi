@@ -8,7 +8,6 @@ import android.databinding.BaseObservable;
 import android.databinding.DataBindingUtil;
 import android.databinding.ObservableArrayList;
 import android.databinding.ObservableField;
-import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,8 +15,6 @@ import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -32,7 +29,7 @@ import com.master_vision.trfihi.common.methods.Helper;
 
 import com.master_vision.trfihi.registration.register.adapter.FlagsSpinnerAdapter;
 import com.master_vision.trfihi.registration.register.model.RegistrationRequestModel;
-import com.master_vision.trfihi.databinding.DialogPhoneNoBinding;
+import com.master_vision.trfihi.databinding.DialogRegisterPhoneNoBinding;
 import com.master_vision.trfihi.registration.terms_conditions.TermsActivity;
 import com.master_vision.trfihi.registration.verification.VerificationActivity;
 
@@ -71,7 +68,6 @@ public class RegistrationViewModel extends BaseObservable {
 
     private Context context;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks verificationCallbacks;
-    private PhoneAuthProvider.ForceResendingToken resendToken;
 
     // constructor
     public RegistrationViewModel(Activity context) {
@@ -126,24 +122,6 @@ public class RegistrationViewModel extends BaseObservable {
                 ""));
     }
 
-    public void sendVerificationCode(RegistrationRequestModel regReqParam) {
-        String mobileNo = regReqParam.getPhoneNumber();
-        if (TextUtils.isEmpty(mobileNo)) {
-            // display Dialog To enter phone number
-            displayDialogToEnterPhoneNo(regReqParam);
-            return;
-        }
-        setUpVerificationCallbacks(regReqParam);
-        PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                mobileNo,        // Phone number to verify
-                60,                 // Timeout duration
-                TimeUnit.SECONDS,   // Unit of timeout
-                (Activity) context,               // Activity (for callback binding)
-                verificationCallbacks);
-
-        Helper.displayLoadDialog((Activity) context);
-    }
-
     public void onHideConfirmPassClick(View view) {
         view.startAnimation(Helper.BtnClickAnimation);
         if (hideConfirmPassword.get()) {
@@ -196,6 +174,24 @@ public class RegistrationViewModel extends BaseObservable {
         return false;
     }
 
+    public void sendVerificationCode(RegistrationRequestModel regReqParam) {
+        String mobileNo = regReqParam.getPhoneNumber();
+        if (TextUtils.isEmpty(mobileNo)) {
+            // display Dialog To enter phone number
+            displayDialogToEnterPhoneNo(regReqParam);
+            return;
+        }
+        setUpVerificationCallbacks(regReqParam);
+        PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                mobileNo,        // Phone number to verify
+                60,                 // Timeout duration
+                TimeUnit.SECONDS,   // Unit of timeout
+                (Activity) context,               // Activity (for callback binding)
+                verificationCallbacks);
+
+        Helper.displayLoadDialog((Activity) context);
+    }
+
 
     // APIs
     private void setUpVerificationCallbacks(final RegistrationRequestModel requestModel) {
@@ -225,7 +221,6 @@ public class RegistrationViewModel extends BaseObservable {
             @Override
             public void onCodeSent(String verificationId, PhoneAuthProvider.ForceResendingToken token) {
                 Helper.dismissLoading();
-                resendToken = token;
                 ((Activity) context).
                         startActivity(new Intent((Activity) context, VerificationActivity.class)
                                 .putExtra("RegistrationModel", requestModel)
@@ -241,7 +236,7 @@ public class RegistrationViewModel extends BaseObservable {
         final Dialog dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
-        final DialogPhoneNoBinding binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.dialog_phone_no, null, false);
+        final DialogRegisterPhoneNoBinding binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.dialog_register_phone_no, null, false);
         dialog.setContentView(binding.getRoot());
         binding.setRegVM(this);
 

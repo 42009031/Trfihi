@@ -4,6 +4,8 @@ import android.databinding.ObservableField;
 import android.view.View;
 
 import com.master_vision.trfihi.chat.model.ChatModel;
+import com.master_vision.trfihi.common.methods.Helper;
+import com.master_vision.trfihi.common.methods.SharedPreferencesManager;
 
 public class ChatAdapterViewModel {
 
@@ -14,12 +16,13 @@ public class ChatAdapterViewModel {
     public ObservableField<String> date = new ObservableField<>();
 
     private ChatModel model;
+    private String userId;
 
     public ChatAdapterViewModel(ChatModel model) {
         this.model = model;
-
+        this.userId = SharedPreferencesManager.getStringValue(Helper.USER_ID);
         String msg = model.getMessage();
-        if(model.getFromUserId().equals("1")){
+        if(model.getFromUserId().equals(userId)){
             senderMsg.set(msg);
             isSender.set(View.VISIBLE);
         }else{

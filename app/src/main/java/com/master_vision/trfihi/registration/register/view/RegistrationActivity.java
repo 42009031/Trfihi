@@ -1,6 +1,5 @@
 package com.master_vision.trfihi.registration.register.view;
 
-
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
@@ -34,7 +33,6 @@ import com.master_vision.trfihi.registration.register.model.RegistrationRequestM
 import com.master_vision.trfihi.registration.register.view_model.RegistrationViewModel;
 import java.util.Arrays;
 import io.reactivex.annotations.NonNull;
-
 
 public class RegistrationActivity extends AppCompatActivity {
 
@@ -196,7 +194,6 @@ public class RegistrationActivity extends AppCompatActivity {
             regVM.sendVerificationCode(regReqParam);
         }
     }
-
 
     // buttons click listener
     public void onGoogleClick(View view) {
